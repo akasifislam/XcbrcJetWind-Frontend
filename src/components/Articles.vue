@@ -6,15 +6,12 @@
         'grid sm:grid-cols-3 sm:gap-12': isGrid,
       }"
     >
-      <Article :layout="layout" />
-      <Article :layout="layout" />
-      <Article :layout="layout" />
-      <Article :layout="layout" />
-      <Article :layout="layout" />
-      <Article :layout="layout" />
-      <Article :layout="layout" />
-      <Article :layout="layout" />
-      <Article :layout="layout" />
+      <Article
+        :layout="layout"
+        v-for="article in articles"
+        :key="article.id"
+        :article="article"
+      />
     </div>
     <div v-if="showViewAll" class="mt-8 sm:mt-12">
       <router-link
@@ -42,6 +39,7 @@ export default {
       type: Boolean,
       default: true,
     },
+    articles: Array,
   },
   setup(props) {
     let isGrid = computed(() => {
